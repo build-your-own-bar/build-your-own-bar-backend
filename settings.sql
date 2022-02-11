@@ -1,0 +1,6 @@
+-- settings.sql
+DROP DATABASE byob;
+DROP USER byobuser;
+CREATE DATABASE byob;
+CREATE USER byobuser WITH PASSWORD 'byob';
+GRANT ALL PRIVILEGES ON DATABASE byob TO byobuser;
