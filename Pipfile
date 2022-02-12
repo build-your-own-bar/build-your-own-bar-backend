@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 ipython = "*"
 pillow = "*"
 boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 
