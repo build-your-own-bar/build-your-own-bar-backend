@@ -3,8 +3,8 @@ from .models import Drink, Comment
 
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
-    drink = serializers.HyperlinkedModelSerializer(
-        view_name='drink_detail', read_only=True)
+    drinks = serializers.HyperlinkedModelSerializer(
+        read_only=True)
     drink_id = serializers.PrimaryKeyRelatedField(
         queryset=Drink.objects.all(),
         source='drink'
@@ -14,7 +14,8 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'title', 'drink', 'body', 'owner', 'drink_id')
+        fields = ('id', 'title', 'drinks', 'drink',
+                  'body', 'owner', 'drink_id')
 
 
 class DrinkSerializer(serializers.HyperlinkedModelSerializer):
