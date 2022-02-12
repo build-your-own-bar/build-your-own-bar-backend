@@ -76,6 +76,6 @@ https://trello.com/b/q1Q4pewQ/byob
 
 ### Contributors
 
-- Chinsam Lim (https://github.com/chinsan-lim)
+- Chinsan Lim (https://github.com/chinsan-lim)
 - Joey Chang (https://github.com/joesphchang)
 - Justin Lombardi (https://github.com/thejustinlombardi)
