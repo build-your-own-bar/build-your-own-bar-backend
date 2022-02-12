@@ -1,8 +1,8 @@
 from djoser.serializers import UserCreateSerializer
-from rest_framework import serializers
 from . import models
 
 
+# User Serializer 
 class UserCreateSerializer(UserCreateSerializer):
 
     class Meta(UserCreateSerializer.Meta):
