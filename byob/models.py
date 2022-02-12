@@ -5,7 +5,7 @@ from django import forms
 
 
 class Drink(models.Model):
-    name = models.CharField(max_length=100, default='no name', required=True)
+    name = models.CharField(max_length=100, default='no name')
     ice = models.CharField(max_length=100, default='no ice')
     spirit = models.CharField(max_length=100, default='no spirit')
     liqueur = models.CharField(max_length=100, default='no liqueur')
@@ -24,10 +24,10 @@ class Drink(models.Model):
 
 
 class Comment(models.Model):
-    title = models.CharField(max_length=100, required=True)
+    title = models.CharField(max_length=100)
     drink = models.ForeignKey(
         Drink, on_delete=models.CASCADE, related_name='comments')
-    body = models.TextField(required=True)
+    body = models.TextField()
     owner = models.ForeignKey(
         'users.User', related_name='comments', on_delete=models.CASCADE)
 

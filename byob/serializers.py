@@ -3,14 +3,14 @@ from .models import Drink, Comment
 
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
+    drink = serializers.HyperlinkedModelSerializer(
+        view_name='drink_detail', read_only=True)
     drink_id = serializers.PrimaryKeyRelatedField(
         queryset=Drink.objects.all(),
         source='drink'
     )
 
-    owner = serializers.ReadOnlyField(source='owner.email')
-    drink = serializers.HyperlinkedModelSerializer(
-        view_name='drink_detail', read_only=True)
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Comment
@@ -19,9 +19,11 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 
 class DrinkSerializer(serializers.HyperlinkedModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
-    owner = serializers.ReadOnlyField(source='owner.email')
+    drink_url = serializers.ModelSerializer.serializer_url_field(
+        view_name='drink_detail')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Drink
         fields = ('id', 'name', 'ice', 'spirit', 'liqueur', 'juice', 'garnish',
-                  'citrus', 'soda', 'special_request', 'photo', 'owner', 'comments')
+                  'citrus', 'soda', 'special_request', 'photo', 'owner', 'comments', 'drink_url')
