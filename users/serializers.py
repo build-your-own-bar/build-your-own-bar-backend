@@ -2,9 +2,10 @@ from djoser.serializers import UserCreateSerializer
 from . import models
 
 
-# User Serializer 
+# User Serializer
 class UserCreateSerializer(UserCreateSerializer):
 
     class Meta(UserCreateSerializer.Meta):
         model = models.User
-        fields = ('id', 'email', 'username', 'password', 'avatar')
+        fields = ('id', 'email', 'username', 'password',
+                  'avatar', 'birthday', 'mydrinks')
