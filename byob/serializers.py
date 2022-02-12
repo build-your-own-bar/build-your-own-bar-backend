@@ -20,11 +20,11 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
 
 class DrinkSerializer(serializers.HyperlinkedModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
-    drink_url = serializers.ModelSerializer.serializer_url_field(
-        view_name='drink_detail')
+    comment_url = serializers.ModelSerializer.serializer_url_field(
+        view_name='comment_detail')
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Drink
         fields = ('id', 'name', 'ice', 'spirit', 'liqueur', 'juice', 'garnish',
-                  'citrus', 'soda', 'special_request', 'photo', 'owner', 'comments', 'drink_url')
+                  'citrus', 'soda', 'special_request', 'photo', 'owner', 'comments', 'comment_url')
