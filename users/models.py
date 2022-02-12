@@ -11,8 +11,8 @@ class User(AbstractUser):
     avatar = models.CharField(max_length=500)
     REQUIRED_FIELDS = ['username']
     USERNAME_FIELD = 'email'
-    birthday = models.DateField()
-    mydrinks = ArrayField(models.CharField(max_length=200), blank=True)
+    birthday = models.CharField(max_length=100)
+    mydrinks = models.CharField(max_length=100)
 
     def get_username(self):
         return self.email
