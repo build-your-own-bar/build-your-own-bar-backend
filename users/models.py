@@ -12,7 +12,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
     USERNAME_FIELD = 'email'
     birthday = models.CharField(max_length=100)
-    mydrinks = models.CharField(max_length=100)
+    my_drinks = ArrayField(models.CharField(
+        max_length=100, blank=True), default=list)
 
     def get_username(self):
         return self.email
