@@ -11,4 +11,4 @@ class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = models.User
         fields = ('id', 'email', 'username', 'password',
-                  'avatar', 'birthday', 'mydrinks')
+                  'avatar', 'birthday', 'my_drinks')
