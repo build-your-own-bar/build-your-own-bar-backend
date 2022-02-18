@@ -1,10 +1,12 @@
 # BYOBar - Backend
 
-> This is our awesome app where you can build your own bar!
+> This is the backend repo for our App, "BYOBar". Using Python, Django, Postgres, and AWS, we created a full CRUD app where users can create drinks, share their ideas, and comment on their favorite cocktails!
 
 ## API Routes
 
 ### Root Route
+
+https://buildyobar.herokuapp.com/
 
 ### Route paths
 
@@ -35,12 +37,11 @@
 
 ## Installation
 
-1. fork and clone this repository to your machine
-2. cd into the repo
-
-## Future Improvements
-
--
+1. Fork and clone this repository to your machine
+2. `cd` into the repo
+3. Create your shell with `pipenv shell`
+4. Install dependencies with `pipenv install`
+5. Open code editor with `code .`
 
 ## Contribution Guidelines
 
@@ -53,13 +54,38 @@
 #### Updated Drink Model
 
 ```
+class Drink(models.Model):
+    name = models.CharField(max_length=100, default='no name')
+    ice = models.CharField(max_length=100, default='no ice')
+    spirit = models.CharField(max_length=100, default='no spirit')
+    liqueur = models.CharField(max_length=100, default='no liqueur')
+    juice = models.CharField(max_length=100, default='no juice')
+    garnish = models.CharField(max_length=100, default='no garnish')
+    citrus = models.CharField(max_length=100, default='no citrus')
+    soda = models.CharField(max_length=100, default='no soda')
+    special_request = models.TextField(null=True, blank=True)
+    photo = models.ImageField(
+        upload_to='images/', default='images/drank.jpg')
+    owner = models.ForeignKey(
+        'users.User', related_name='drinks', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 ```
 
-#### Updated User Model
+#### Updated Comment Model
 
 ```
+class Comment(models.Model):
+    title = models.CharField(max_length=100)
+    drink = models.ForeignKey(
+        Drink, on_delete=models.CASCADE, related_name='comments')
+    body = models.TextField()
+    owner = models.ForeignKey(
+        'users.User', related_name='comments', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
 ```
 
 ### Initial Req. / Res. Cycle Diagram
@@ -72,7 +98,7 @@ https://trello.com/b/q1Q4pewQ/byob
 
 ### Unsolved Problems / Major Hurdles
 
->
+> The biggest hurdle was getting used to the new process of creating a backend. We previously used Express and MongoDb which was a little more forgiving. Once we were able to work around proper naming conventions and successful migrations, we were on our way!
 
 ### Contributors
 
